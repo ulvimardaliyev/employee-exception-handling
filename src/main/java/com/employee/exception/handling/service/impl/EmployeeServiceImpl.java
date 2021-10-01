@@ -23,6 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     EmployeeMapper employeeMapper;
     EmployerMapper employerMapper;
 
+
     @Override
     public List<EmployeeResponseDto> getAllEmployees() {
         var allEmployees = employeeRepository.findAll();
@@ -37,10 +38,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Long saveNewEmployee(EmployeeRequestDto employeeRequestDto) {
-        var requestToEntity = employeeMapper.convertEmployeeRequestDtoToEntity(employeeRequestDto);
-        /*var employerId = employeeRequestDto.getEmployerId();
-        var employer = employerRepository.findByEmployerId(employerId);
-        requestToEntity.setEmployer(employer);*/
+        var employer = employerRepository.findByEmployerId(employeeRequestDto.getEmployerId());
+        var requestToEntity = employeeMapper.convertEmployeeRequestDtoToEntity(employeeRequestDto, employer);
         var id = employeeRepository.save(requestToEntity);
         return id.getEmployeeId();
     }

@@ -19,12 +19,7 @@ public interface EmployeeMapper {
     @Mapping(target = "employerId", source = "employer", qualifiedByName = "getEmployerId")
     EmployeeResponseDto convertEmployeeEntityToResponse(Employee employee);
 
-    @Mapping(target = "employer",
-            source = "employerId", qualifiedByName = "getEmployer")
-    Employee convertEmployeeRequestDtoToEntity(EmployeeRequestDto employeeRequestDto);
-    /*@Mapping(target = "employer",
-            expression = "java(employerServiceImpl.getEmployer(employeeRequestDto.getEmployerId()))")
-    Employee convertEmployeeRequestDtoToEntity(EmployeeRequestDto employeeRequestDto);*/
+    Employee convertEmployeeRequestDtoToEntity(EmployeeRequestDto employeeRequestDto, Employer employer);
 
     @Named("getEmployerId")
     static Long getEmployerId(Employer employer) {

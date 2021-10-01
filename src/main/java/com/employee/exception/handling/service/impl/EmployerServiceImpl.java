@@ -1,6 +1,5 @@
 package com.employee.exception.handling.service.impl;
 
-import com.employee.exception.handling.dao.entity.Employer;
 import com.employee.exception.handling.dao.repository.EmployerRepository;
 import com.employee.exception.handling.dto.request.EmployerRequestDto;
 import com.employee.exception.handling.dto.response.EmployerResponseDto;
@@ -10,7 +9,6 @@ import com.employee.exception.handling.service.EmployerService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.mapstruct.Named;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,10 +43,5 @@ public class EmployerServiceImpl implements EmployerService {
     @Override
     public void deleteEmployer(Long employerId) {
         employerRepository.deleteByEmployerId(employerId);
-    }
-
-    @Named("getEmployer")
-    public Employer getEmployer(Long employerId) {
-        return employerRepository.findByEmployerId(employerId);
     }
 }
